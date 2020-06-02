@@ -1,9 +1,8 @@
 package edu.emmerson.camel3.cdi.rmq;
 
-import java.util.jar.Manifest;
-
-import org.apache.camel.api.management.JmxSystemPropertyKeys;
 import org.apache.camel.cdi.Main;
+
+import java.util.jar.Manifest;
 
 public class ConsumerMainApp {
 	
@@ -15,7 +14,7 @@ public class ConsumerMainApp {
         
     	System.out.println("------------------- Starting with shared main library -------------------");
     	
-    	System.setProperty(JmxSystemPropertyKeys.DISABLED, "false");
+//    	System.setProperty(JmxSystemPropertyKeys.DISABLED, "false");
     	
         Main main = new Main();
 

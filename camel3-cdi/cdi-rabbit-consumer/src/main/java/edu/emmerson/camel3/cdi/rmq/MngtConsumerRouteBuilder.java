@@ -1,15 +1,14 @@
 package edu.emmerson.camel3.cdi.rmq;
 
-import java.util.LinkedHashMap;
-import java.util.UUID;
-
 import org.apache.camel.Route;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy;
 import org.apache.camel.component.rest.RestApiEndpoint;
 import org.apache.camel.component.rest.RestEndpoint;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.LinkedHashMap;
+import java.util.UUID;
 
 /**
  * 
@@ -40,14 +39,14 @@ public class MngtConsumerRouteBuilder extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-    	MetricsRoutePolicy mrp = MetricsFactory.createMetricsRoutePolicy(MngtConstants.MNGT_CONSUMER_RABBITMQ_ROUTE_ID);	
+//    	MetricsRoutePolicy mrp = MetricsFactory.createMetricsRoutePolicy(MngtConstants.MNGT_CONSUMER_RABBITMQ_ROUTE_ID);
 		
         //
         //consuming management messages
         //
         from(getQueueEndpoint())
 	        .routeId(MngtConstants.MNGT_CONSUMER_RABBITMQ_ROUTE_ID)
-	        .routePolicy(mrp)
+//	        .routePolicy(mrp)
 		    .to(MngtConstants.MNGT_CONSUMER_DIRECT_ENDPOINT);
 	    
         

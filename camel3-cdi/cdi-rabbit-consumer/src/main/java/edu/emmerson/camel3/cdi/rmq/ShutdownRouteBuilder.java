@@ -15,11 +15,11 @@ public class ShutdownRouteBuilder extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-		from(MngtConstants.MNGT_SHUTDOWN_DIRECT_ENDPOINT)
-	        .startupOrder(10000)
-	        .routeId(MngtConstants.MNGT_SHUTDOWN_DIRECT_ROUTE_ID)
-	        .log("shuting down camel at " + Instant.now().toString())
-	        .process().message(m -> { m.getExchange().getContext().shutdown(); } );
+//		from(MngtConstants.MNGT_SHUTDOWN_DIRECT_ENDPOINT)
+//	        .startupOrder(10000)
+//	        .routeId(MngtConstants.MNGT_SHUTDOWN_DIRECT_ROUTE_ID)
+//	        .log("shuting down camel at " + Instant.now().toString())
+//	        .process().message(m -> { m.getExchange().getContext().shutdown(); } );
     }
     
 }

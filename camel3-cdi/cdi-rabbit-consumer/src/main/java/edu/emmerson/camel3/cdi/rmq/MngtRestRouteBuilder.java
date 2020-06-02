@@ -2,7 +2,6 @@ package edu.emmerson.camel3.cdi.rmq;
 
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy;
 import org.apache.camel.model.rest.RestBindingMode;
 
 
@@ -25,21 +24,23 @@ public class MngtRestRouteBuilder extends RouteBuilder {
                 .apiProperty("api.title", "Producer API").apiProperty("api.version", "1.0.0")
                 .apiProperty("cors", "true");
 		
-        MetricsRoutePolicy mrpPublish = MetricsFactory.createMetricsRoutePolicy(MngtConstants.MNGT_PRODUCER_REST_ROUTE_ID);	
+//        MetricsRoutePolicy mrpPublish = MetricsFactory.createMetricsRoutePolicy(MngtConstants.MNGT_PRODUCER_REST_ROUTE_ID);
         rest("/mngt").description("RabbitMQ Camel Management service")
 	    	.consumes("application/json").produces("application/json")
 	        .post("/publish")
 	        	.description("Publish a Mngt message in RabbitMQ")
 	        	.responseMessage().code(204).message("Message storaged").endResponseMessage()
-	        	.route().routeId(MngtConstants.MNGT_PRODUCER_REST_ROUTE_ID).routePolicy(mrpPublish)
+	        	.route().routeId(MngtConstants.MNGT_PRODUCER_REST_ROUTE_ID)
+//				.routePolicy(mrpPublish)
 	        	.to(MngtConstants.MNGT_PRODUCER_DIRECT_ENDPOINT)
         ;
         
-        MetricsRoutePolicy mrpDescribe = MetricsFactory.createMetricsRoutePolicy(MngtConstants.MNGT_DESCRIBE_REST_ROUTE_ID);	
+//        MetricsRoutePolicy mrpDescribe = MetricsFactory.createMetricsRoutePolicy(MngtConstants.MNGT_DESCRIBE_REST_ROUTE_ID);
         rest("/mngt").description("Describe Camel Routes inside the JVM")
 	        .consumes("application/json").produces("application/json") 
 	        .get("/describe")
-		        .description("Describe Apache Camel routes").route().routeId(MngtConstants.MNGT_DESCRIBE_REST_ROUTE_ID).routePolicy(mrpDescribe)
+		        .description("Describe Apache Camel routes").route().routeId(MngtConstants.MNGT_DESCRIBE_REST_ROUTE_ID)
+//				.routePolicy(mrpDescribe)
 		        .to(MngtConstants.MNGT_DESCRIBE_DIRECT_ENDPOINT)
         ;
         
@@ -50,11 +51,12 @@ public class MngtRestRouteBuilder extends RouteBuilder {
 		        .to(MngtConstants.MNGT_SHUTDOWN_DIRECT_ENDPOINT)
         ;  
  
-       MetricsRoutePolicy mrpStats = MetricsFactory.createMetricsRoutePolicy(ConsumerConstants.STATS_DIRECT_REST_ROUTE_ID);	
+//       MetricsRoutePolicy mrpStats = MetricsFactory.createMetricsRoutePolicy(ConsumerConstants.STATS_DIRECT_REST_ROUTE_ID);
        rest("/mngt").description("RabbitMQ Camel Management service")
 	        .consumes("application/json").produces("application/json") 
 	        .get("/stats")
-		        .description("Stats Apache Camel").route().routeId(ConsumerConstants.STATS_DIRECT_REST_ROUTE_ID).routePolicy(mrpStats)
+		        .description("Stats Apache Camel").route().routeId(ConsumerConstants.STATS_DIRECT_REST_ROUTE_ID)
+//			   .routePolicy(mrpStats)
 		        .to(StatsRouteBuilder.DIRECT_STATS)
        ;
        

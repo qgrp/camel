@@ -1,13 +1,14 @@
 package edu.emmerson.camel3.cdi.rmq;
 
-import java.util.LinkedHashMap;
-
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy;
+//import org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy;
 import org.apache.camel.component.rabbitmq.RabbitMQConstants;
-import org.apache.camel.http.base.HttpOperationFailedException;
+import org.apache.camel.http.common.HttpOperationFailedException;
+//import org.apache.camel.http.base.HttpOperationFailedException;
+
+import java.util.LinkedHashMap;
 
 /**
  * 
@@ -102,14 +103,14 @@ public class ConsumerRouteBuilder extends RouteBuilder {
     	;
         
         
-        MetricsRoutePolicy mrp = MetricsFactory.createMetricsRoutePolicy(ConsumerConstants.CONSUMER_RABBITMQ_ROUTE_ID);
+//        MetricsRoutePolicy mrp = MetricsFactory.createMetricsRoutePolicy(ConsumerConstants.CONSUMER_RABBITMQ_ROUTE_ID);
 		
         //
         //consuming messages
         //
         from(getQueueEndpoint())
 	        .routeId(ConsumerConstants.CONSUMER_RABBITMQ_ROUTE_ID)
-	        .routePolicy(mrp)
+//	        .routePolicy(mrp)
 		    .to("direct:target");
 	    
         //
